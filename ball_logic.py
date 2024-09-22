@@ -4,6 +4,7 @@ import random
 from pygame.locals import *
 
 pygame.init()
+pygame.mixer.init()
 
 Width, Hight = 800, 600
 Font = pygame.font.SysFont("Arial", int(Width/20))
@@ -13,6 +14,10 @@ score = 0
 screen = pygame.display.set_mode((Width, Hight))
 pygame.display.set_caption("Pong!")
 clock = pygame.time.Clock()
+
+#sound effect
+paddle_hit_sound = pygame.mixer.Sound("C:\\zaidd\\pong game\\ping-pong-paddle-sound.mp3")
+score_sound = pygame.mixer.Sound("C:\\zaidd\\pong game\\score_sound_effect.mp3")
 
 #Padels
 player = pygame.Rect(Width - 110, Hight/2 - 50, 10, 100)
@@ -64,14 +69,17 @@ while True:
         player2_score += 1
         ball.center = (Width / 2, Hight / 2)
         x_speed, y_speed = random.choice([3, -3]), random.choice([3, -3])
+        pygame.mixer.Sound.play(score_sound)
 
     # Ball and paddle collision
     if player.colliderect(ball):  
         x_speed = -x_speed
+        pygame.mixer.Sound.play(paddle_hit_sound)
 
     if player2.colliderect(ball):  
         x_speed = -x_speed
-
+        pygame.mixer.Sound.play(paddle_hit_sound)
+    
     #Update ball position
     ball.x += x_speed 
     ball.y += y_speed 
