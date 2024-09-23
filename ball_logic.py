@@ -19,6 +19,10 @@ clock = pygame.time.Clock()
 paddle_hit_sound = pygame.mixer.Sound("C:\\zaidd\\pong game\\ping-pong-paddle-sound.mp3")
 score_sound = pygame.mixer.Sound("C:\\zaidd\\pong game\\score_sound_effect.mp3")
 
+#background music
+pygame.mixer.music.load("C:\\zaidd\\pong game\\bg_music_1.mp3")  
+pygame.mixer.music.play(-1)  #-1 means infinite loop
+
 #Padels
 player = pygame.Rect(Width - 110, Hight/2 - 50, 10, 100)
 player2 = pygame.Rect(110, Hight / 2- 50, 10, 100)
